@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Asset;
 use Illuminate\Http\Request;
 
 class all_assetsController extends Controller
@@ -13,7 +13,8 @@ class all_assetsController extends Controller
      */
     public function index()
     {
-        //
+        $assets = Asset::all();
+    	return view('all_assets.home', ['asset' => $assets]);
     }
 
     /**

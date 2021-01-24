@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Location;
 use Illuminate\Http\Request;
 
 class locationController extends Controller
@@ -13,7 +13,8 @@ class locationController extends Controller
      */
     public function index()
     {
-        //
+        $location ['location'] = Location::all();
+    	return view('location.home', $location);
     }
 
     /**

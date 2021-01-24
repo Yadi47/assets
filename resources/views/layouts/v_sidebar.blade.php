@@ -12,14 +12,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="{{asset('/template/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
         </div>
-      </div>
+      </div> --}}
 
        <!-- Sidebar Menu -->
        <nav class="mt-2">
@@ -36,27 +36,27 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/all_assets" class="nav-link">
+                <a href="{{ url('all_assets') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Assets</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Category</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
+                <a href="{{ url('type') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Type</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
+                <a href="{{ url('location') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Calibration</p>
+                  <p>Location</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('category') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Category</p>
                 </a>
               </li>
             </ul>

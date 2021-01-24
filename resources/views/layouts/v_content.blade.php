@@ -18,11 +18,9 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
 
-     @yield('data_table')
+     @yield('content')
 
-    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

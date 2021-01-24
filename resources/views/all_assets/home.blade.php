@@ -1,145 +1,88 @@
 @extends('layouts.v_template')
-@section('data_table')
-    
 
-<!-- Main content -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6">
+@section('content')
+    
+<div class="">
+    <!-- Content Header (Page header) -->
+   
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Bordered Table</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>                  
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-danger">55%</span></td>
-                            </tr>
+              <div class="card-header">
+                <h3 class="card-title">DataTable with default features</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
                   <tr>
-                      <td>2.</td>
-                      <td>Clean database</td>
-                      <td>
-                          <div class="progress progress-xs">
-                              <div class="progress-bar bg-warning" style="width: 70%"></div>
-                            </div>
-                        </td>
-                    <td><span class="badge bg-warning">70%</span></td>
+                    <th>No</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Purchase_at</th>
+                    <th>Purchase_price</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Model</th>
+                    <th>Image</th>
+                    <th>Brand</th>
+                    <th>Category_id</th>
+                    <th>asset_part_of</th>
+                    <th>type_id</th>
+                    <th>location_id</th>
                   </tr>
+                  </thead>
+                  <tbody>
                   <tr>
-                    <td>3.</td>
-                    <td>Cron job running</td>
-                    <td>
-                        <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-primary">30%</span></td>
-                </tr>
-                  <tr>
-                      <td>4.</td>
-                      <td>Fix and squish bugs</td>
-                      <td>
-                          <div class="progress progress-xs progress-striped active">
-                              <div class="progress-bar bg-success" style="width: 90%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-success">90%</span></td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.card -->
-        
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Condensed Full Width Table</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0">
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Task</th>
-                            <th>Progress</th>
-                            <th style="width: 40px">Label</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                    <td>1.</td>
-                    <td>Update software</td>
-                    <td>
-                      <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-danger">55%</span></td>
-                </tr>
-                <tr>
-                    <td>2.</td>
-                    <td>Clean database</td>
-                    <td>
-                        <div class="progress progress-xs">
-                            <div class="progress-bar bg-warning" style="width: 70%"></div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-warning">70%</span></td>
-                </tr>
-                <tr>
-                    <td>3.</td>
-                    <td>Cron job running</td>
-                    <td>
-                        <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-primary">30%</span></td>
-                </tr>
-                <tr>
-                    <td>4.</td>
-                    <td>Fix and squish bugs</td>
-                    <td>
-                        <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar bg-success" style="width: 90%"></div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-success">90%</span></td>
+                     
+                      @foreach ($assets as $data_asset)
+                          
+                      
+                    <td></td>  
+                    <td>{{ $data_asset->code }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+
+                    @endforeach
+
                   </tr>
-                </tbody>
-            </table>
+                  </tbody>
+                  {{-- <tfoot>
+                  <tr>
+                    <th>Rendering engine</th>
+                    <th>Browser</th>
+                    <th>Platform(s)</th>
+                    <th>Engine version</th>
+                    <th>CSS grade</th>
+                  </tr>
+                  </tfoot> --}}
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
         </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-    </div>
-        <!-- /.col -->
-        @endsection
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+@endsection
+  
