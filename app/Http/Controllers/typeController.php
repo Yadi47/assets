@@ -75,8 +75,11 @@ class typeController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+        $data['page_title'] = 'Edit Type';
+        $data['types'] = Type::findOrFail($id);
+        // dd($departement);
+        return view('type.edit', $data);
+    }   
 
     /**
      * Update the specified resource in storage.
@@ -88,8 +91,38 @@ class typeController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
+        $request->validate([
+            'name' => ['required', "unique:type,name, $id"],
+            
+        ]);
+          
+        $type = Type::findOrFail($id);
+        $type->name = $request->input('name');
+        $type->description = $request->input('description') ?? "N/A";
+        if ($request->hasFile('image')) {
+            // Check Image
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
 
+            // Delete Img
+            if ($type->image) {
+                $image_path = public_path('images/type' . $type->image); // Value is not URL but directory file path
+                if (File::exists($image_path)) {
+                    File::delete($image_path);
+                }
+            }
+            $image = $request->file('image');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('images/type');
+            $image->move($destinationPath, $name);
+            $type->image = $name;
+        }
+        $type->save();
+
+        return redirect('type')->with(['update' => 'Data updated successfully!']);
+
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -98,9 +131,9 @@ class typeController extends Controller
      */
     public function destroy($id)
     {
-    DB::transaction(function() use ($id){
-        $type = Type::where('id', $id)->delete();
-    });
+        $yadi = Type::findOrFail($id);
+        $yadi->delete();
+        
     return redirect('type')->with(['delete' => 'Data delete successfully!']);
     }
 }

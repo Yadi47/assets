@@ -45,13 +45,21 @@
                       <img width="70"  src="{{ asset('images/type/'.$data_type->image) }}" alt="profile">
                     </td>
                     <td>
-                      <a href=""><button type="submit" class="btn btn-primary">Edit</button></a>
-                      <a href="{{ route('type.destroy' )}}"><button type="submit" class="btn btn-primary">Delete</button></a>
-                      {{-- <form action="{{ route('type.destroy' )}}" method="post">
+                      <a href="{{url('type/'.$data_type->id.'/edit/') }}">
+                        <button class="btn btn-warning btn-sm text-white">
+                            <i class="icon icon ion ion-edit"></i> Edit
+
+                        </button>
+                       </a>
+                       <form action="{{ route('type.destroy', $data_type->id) }}" method="POST">
                         @method('delete')
                         @csrf
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                    </form> --}}
+
+                        <button type="submit" class="btn btn-danger btn-sm mt-3 btn-100" onclick="return confirm('Apakah anda yakin ingin menghapus {{ $data_type->name }}?')">
+                            <i class="far fa-trash-alt"></i> Delete
+                        </button>
+                       </form>
+                      
                     </td>
                     
 
@@ -59,15 +67,6 @@
                   </tr>
                   @endforeach
                   </tbody>
-                  {{-- <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </tfoot> --}}
                 </table>
               </div>
               <!-- /.card-body -->
@@ -84,4 +83,5 @@
   </div>
   <!-- /.content-wrapper -->
 @endsection
+
   
