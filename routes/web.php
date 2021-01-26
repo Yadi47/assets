@@ -19,11 +19,11 @@ Route::get('/', function () {
 
 // Route::get('/all_assets', 'all_assetsController@index')->name('all_assets.home');
 Route::get('/category', 'categoryController@index')->name('category.home');
-Route::get('/category/add', 'typeController@create')->name('type.form');
- Route::get('/type/{id}/edit', 'typeController@edit');
- Route::post('/type/store', 'typeController@store')->name('type.store');
- Route::put('/type/{id}', 'typeController@update')->name('type.update');
- Route::delete('/type/{id}', 'typeController@destroy')->name('type.destroy');
+Route::get('/category/add', 'categoryController@create')->name('category.form');
+ Route::get('/category/{id}/edit', 'categoryController@edit');
+ Route::post('/category/store', 'categoryController@store')->name('category.store');
+ Route::put('/category/{id}', 'categoryController@update')->name('category.update');
+ Route::delete('/category/{id}', 'categoryController@destroy')->name('category.destroy');
 
 
 // Type

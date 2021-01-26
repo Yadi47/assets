@@ -13,7 +13,9 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title float-right">
+                  <a href="/category/add" class="btn btn-primary ">New Item</a>
+                </h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -23,6 +25,7 @@
                     <th>No</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Action</th>
                     
                   </tr>
                   </thead>
@@ -37,7 +40,23 @@
                     <td>{{ $no++ }}</td>  
                     <td>{{ $data_category->name }}</td>  
                     <td>{{ $data_category->description }}</td>  
-                    
+                    <td>
+                      <a href="{{url('category/'.$data_category->id.'/edit/') }}">
+                        <button class="btn btn-warning btn-sm text-white">
+                            <i class="icon icon ion ion-edit"></i> Edit
+
+                        </button>
+                       </a>
+                       <form action="{{ route('category.destroy', $data_category->id) }}" method="POST">
+                        @method('delete')
+                        @csrf
+
+                        <button type="submit" class="btn btn-danger btn-sm mt-3 btn-100" onclick="return confirm('Apakah anda yakin ingin menghapus {{ $data_category->name }}?')">
+                            <i class="far fa-trash-alt"></i> Delete
+                        </button>
+                       </form>
+                      
+                    </td>
 
                     
                   </tr>

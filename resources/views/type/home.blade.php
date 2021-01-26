@@ -14,7 +14,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title float-right">
-                  <a href="/type/add" class="btn btn-primary ">Add</a>
+                  <a href="/type/add" class="btn btn-primary ">New Item</a>
                 </h3>
               </div>
               <!-- /.card-header -->

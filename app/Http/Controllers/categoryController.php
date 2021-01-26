@@ -24,7 +24,8 @@ class categoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.form');
+        
     }
 
     /**
@@ -35,7 +36,17 @@ class categoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+    		'name' => ['required'],
+            'description' => ['required'],
+            
+        ]);
+        $category = new Category();
+        $category->name = $request->input('name'); 
+        $category->description = $request->input('description');
+        $category->save();
+        
+        return redirect('category')->with(['create' => 'Data saved successfully!']);
     }
 
     /**
@@ -57,7 +68,10 @@ class categoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['page_title'] = 'Edit Type';
+        $data['Categories'] = Category::findOrFail($id);
+        // dd($departement);
+        return view('category.edit', $data);
     }
 
     /**
@@ -69,7 +83,18 @@ class categoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', "unique:category,name, $id"],
+            
+        ]);
+          
+        $category = Category::findOrFail($id);
+        $category->name = $request->input('name');
+        $category->description = $request->input('description') ?? "N/A";
+
+        $type->save();
+
+        return redirect('category')->with(['update' => 'Data updated successfully!']);
     }
 
     /**
@@ -80,6 +105,9 @@ class categoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $yadi = Category::findOrFail($id);
+        $yadi->delete();
+        
+    return redirect('category')->with(['delete' => 'Data delete successfully!']);
     }
 }
