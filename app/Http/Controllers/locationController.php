@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class locationController extends Controller
 {
@@ -24,7 +25,7 @@ class locationController extends Controller
      */
     public function create()
     {
-        //
+        return view('location.form');
     }
 
     /**
@@ -35,7 +36,28 @@ class locationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+    		'country' => ['required', 'min:3'], 
+            'province' => ['required', 'min:3'],
+            'city' => ['required', 'min:3'],
+            'address' => ['required', 'min:3'],
+            'postal_code' => ['required', 'min:2'],
+            'longtitude' => ['required', 'numeric'],
+            'latitude' => ['required', 'numeric']
+        ]);
+        
+        $location = new Location();
+        $location->country = $request->input('country');
+        $location->province = $request->input('province');
+        $location->city = $request->input('city');
+        $location->address = $request->input('address');
+        $location->postal_code = $request->input('postal_code');
+        $location->longtitude = $request->input('longtitude');
+        $location->latitude = $request->input('latitude');
+        $location->save();
+
+        return redirect('location')->with(['create' => 'Data saved successfully!']);
+
     }
 
     /**
@@ -57,7 +79,10 @@ class locationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['page_title'] = 'Edit Type';
+        $data['locations'] = Location::findOrFail($id);
+        // dd($departement);
+        return view('location.edit', $data);
     }
 
     /**
@@ -69,7 +94,23 @@ class locationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'country' => ['required', "unique:location,country, $id"],
+            
+        ]);
+          
+        $location = Location::findOrFail($id);
+        $location->country = $request->input('country');
+        $location->province = $request->input('province') ?? "N/A";
+        $location->city = $request->input('city') ?? "N/A";
+        $location->address = $request->input('address') ?? "N/A";
+        $location->postal_code = $request->input('postal_code') ?? "N/A";
+        $location->longtitude = $request->input('longtitude') ?? "N/A";
+        $location->latitude = $request->input('latitude') ?? "N/A";
+
+        $location->save();
+
+        return redirect('location')->with(['update' => 'Data updated successfully!']);
     }
 
     /**
@@ -80,6 +121,9 @@ class locationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $yadi = Location::findOrFail($id);
+        $yadi->delete();
+        
+    return redirect('location')->with(['delete' => 'Data delete successfully!']);
     }
 }

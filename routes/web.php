@@ -18,13 +18,23 @@ Route::get('/', function () {
 });
 
 // Route::get('/all_assets', 'all_assetsController@index')->name('all_assets.home');
-Route::get('/category', 'categoryController@index')->name('category.home');
-Route::get('/category/add', 'categoryController@create')->name('category.form');
+
+
+// Category
+ Route::get('/category', 'categoryController@index')->name('category.home'); 
+ Route::get('/category/add', 'categoryController@create')->name('category.form');
  Route::get('/category/{id}/edit', 'categoryController@edit');
  Route::post('/category/store', 'categoryController@store')->name('category.store');
  Route::put('/category/{id}', 'categoryController@update')->name('category.update');
  Route::delete('/category/{id}', 'categoryController@destroy')->name('category.destroy');
-
+ 
+ // Location
+  Route::get('/location', 'locationController@index')->name('location.home'); 
+  Route::get('/location/add', 'locationController@create')->name('location.form');
+  Route::get('/location/{id}/edit', 'locationController@edit');
+  Route::post('/location/store', 'locationController@store')->name('location.store');
+  Route::put('/location/{id}', 'locationController@update')->name('location.update');
+  Route::delete('/location/{id}', 'locationController@destroy')->name('location.destroy');
 
 // Type
  Route::get('/type', 'typeController@index')->name('type.home');
@@ -34,7 +44,6 @@ Route::get('/category/add', 'categoryController@create')->name('category.form');
  Route::put('/type/{id}', 'typeController@update')->name('type.update');
  Route::delete('/type/{id}', 'typeController@destroy')->name('type.destroy');
  
- Route::get('/location', 'locationController@index')->name('location.home');
  
 
 

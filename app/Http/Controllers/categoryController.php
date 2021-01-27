@@ -69,7 +69,7 @@ class categoryController extends Controller
     public function edit($id)
     {
         $data['page_title'] = 'Edit Type';
-        $data['Categories'] = Category::findOrFail($id);
+        $data['categories'] = Category::findOrFail($id);
         // dd($departement);
         return view('category.edit', $data);
     }
@@ -92,7 +92,7 @@ class categoryController extends Controller
         $category->name = $request->input('name');
         $category->description = $request->input('description') ?? "N/A";
 
-        $type->save();
+        $category->save();
 
         return redirect('category')->with(['update' => 'Data updated successfully!']);
     }

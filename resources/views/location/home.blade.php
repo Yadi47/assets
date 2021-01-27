@@ -13,7 +13,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <a href="/location/add" class="btn btn-primary ">New Item</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -21,8 +21,14 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <th>Country</th>
+                    <th>Province</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>Postal_code</th>
+                    <th>Longtitude</th>
+                    <th>Latitude</th>
+                    <th>Action</th>
                     
                   </tr>
                   </thead>
@@ -42,7 +48,22 @@
                     <td>{{ $data_location->postal_code }}</td>  
                     <td>{{ $data_location->longtitude }}</td>  
                     <td>{{ $data_location->latitude }}</td>  
-                    
+                    <td>
+                      <a href="{{url('location/'.$data_location->id.'/edit/') }}">
+                        <button class="btn btn-warning btn-sm text-white">
+                            <i class="icon icon ion ion-edit"></i> Edit
+
+                        </button>
+                       </a>
+                       <form action="{{ route('location.destroy', $data_location->id) }}" method="POST">
+                        @method('delete')
+                        @csrf
+
+                        <button type="submit" class="btn btn-danger btn-sm mt-3 btn-100" onclick="return confirm('Apakah anda yakin ingin menghapus ?')">
+                            <i class="far fa-trash-alt"></i> Delete
+                        </button>
+                       </form>
+                    </td>
 
                     
                   </tr>
