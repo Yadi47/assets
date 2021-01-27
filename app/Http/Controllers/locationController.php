@@ -121,8 +121,8 @@ class locationController extends Controller
      */
     public function destroy($id)
     {
-        $yadi = Location::findOrFail($id);
-        $yadi->delete();
+        $location = Location::findOrFail($id);
+        $location->delete();
         
     return redirect('location')->with(['delete' => 'Data delete successfully!']);
     }

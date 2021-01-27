@@ -37,7 +37,7 @@
           <div class="form-group">
             <label for="latitude">Latitude</label>
             <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Enter Latitude" value="{{ $locations->latitude }}">
-          </div>
+          </div>  
 
       </div>
       <!-- /.card-body -->
