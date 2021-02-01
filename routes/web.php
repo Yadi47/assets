@@ -17,8 +17,11 @@ Route::get('/', function () {
     return view('layouts.v_template');
 });
 
-// Route::get('/all_assets', 'all_assetsController@index')->name('all_assets.home');
-
+//Asset
+Route::get('/all_assets', 'all_assetsController@index')->name('all_assets.home');
+Route::get('/all_assets/add', 'all_assetsController@create')->name('all_assets.create');
+Route::post('/all_assets/add', 'all_assetsController@create')->name('all_assets.store');
+Route::get('/all_assets/gettree', 'all_assetsController@getTree')->name('asset.gettree');
 
 // Category
  Route::get('/category', 'categoryController@index')->name('category.home'); 

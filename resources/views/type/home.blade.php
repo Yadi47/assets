@@ -4,7 +4,9 @@
     
 <div class="">
     <!-- Content Header (Page header) -->
-   
+    @section('content_title')
+       <h1>Type</h1>
+   @endsection
 
     <!-- Main content -->
     <section class="content">

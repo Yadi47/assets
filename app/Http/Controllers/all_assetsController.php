@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Asset;
+use App\Calibration;
+use App\CategoryAsset;
+use App\Category;
+use App\Location;
+use App\Type; 
 use Illuminate\Http\Request;
 
 class all_assetsController extends Controller
@@ -11,11 +16,51 @@ class all_assetsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function getTree()
     {
-        $assets = Asset::all();
-    	return view('all_assets.home', ['asset' => $assets]);
+        $assets = Asset::get();
+        $tree = array();
+
+        foreach($assets as $asset){
+            if (isset($asset->parent->id)) {
+                $parent = $asset->parent->id;
+            } else {
+                $parent = "#";
+            }
+
+            $selected = false;
+            $opened = false;
+            // if($asset->id == 2){
+                // $selected = true;
+                // $opened = true;
+            // } 
+            
+            $tree[] = array(
+                "id" => $asset->id,
+                "parent" => $parent,
+                "text" => $asset->name . " (" . (isset($asset->assetType->name) ? $asset->assetType->name : '') . " - " . (isset($asset->assetCategory->name) ? $asset->assetCategory->name : '') . ")",
+                "icon" => asset($asset->image ?? 'backend/images/noimage.jpg'),
+                'a_attr'=> array(
+                    'show'=> "assets/".$asset->id,
+                    'edit'=> "assets/".$asset->id.'/edit'
+                ),
+                "state" => array("selected" => $selected,"opened"=>$opened)
+            );
+        }
+
+        return json_encode($tree); 
+     
     }
+        public function index()
+        {
+            $data[''] = 'Assets';
+            $data['asset'] = Asset::all();
+    
+            $data[''] = 'Calibration';
+            $data['calibration'] = Calibration::all();
+            return view('all_assets.home', $data);
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +69,11 @@ class all_assetsController extends Controller
      */
     public function create()
     {
-        //
+        $data['categories'] = Category::all();
+        $data['types'] = Type::all();
+        $data['locations'] = Location::all();
+        $data['assets'] = Asset::all();
+        return view('all_assets.create', $data);
     }
 
     /**
