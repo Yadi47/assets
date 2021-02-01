@@ -12,11 +12,17 @@
       <div class="card-body">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="input" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ $types->name }}">
+          <input type="input" class="form-control{{ $errors->has('name') }}" id="name" name="name" placeholder="Enter Name" value="{{ $types->name }}">
+          @if ($errors->has('name'))
+              <small class="text-danger">{{ $errors->first('name') }}</small>
+          @endif
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description" value="{{ $types->description }}">
+          <input type="text" class="form-control{{ $errors->has('description') }}" id="description" name="description" placeholder="Enter Description" value="{{ $types->description }}">
+          @if ($errors->has('description'))
+              <small class="text-danger">{{ $errors->first('description') }}</small>
+          @endif
         </div>
         <div class="form-group ">
             <label for="">Image</label>

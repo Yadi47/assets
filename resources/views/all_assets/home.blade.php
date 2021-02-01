@@ -42,19 +42,19 @@
                       @foreach ($assets as $data_asset)
                           
                       
-                    <td></td>  
+                    <!-- <td>{{ $no++ }}</td>  
                     <td>{{ $data_asset->code }}</td>  
+                    <td>{{ $data_asset->name }}</td>  
+                    <td>{{ $data_asset->  }}</td>  
+                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>      
                     <td>{{ $data_asset-> }}</td>  
                     <td>{{ $data_asset-> }}</td>  
                     <td>{{ $data_asset-> }}</td>  
                     <td>{{ $data_asset-> }}</td>  
                     <td>{{ $data_asset-> }}</td>  
                     <td>{{ $data_asset-> }}</td>  
-                    <td>{{ $data_asset-> }}</td>  
-                    <td>{{ $data_asset-> }}</td>  
-                    <td>{{ $data_asset-> }}</td>  
-                    <td>{{ $data_asset-> }}</td>  
-                    <td>{{ $data_asset-> }}</td>  
+                    <td>{{ $data_asset-> }}</td>   -->
 
                     @endforeach
 
@@ -85,4 +85,79 @@
   </div>
   <!-- /.content-wrapper -->
 @endsection
+
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script>
+         var route_url = 'assets';
+        $(document).ready(function () {
+            var dataTree = [];
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('asset.gettree') }}',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                dataTree = data
+            },
+            error: function (data) {
+                $.alert('Failed Get Data!');
+                console.log(data);
+            }
+        });
+            $('#treeview').jstree({
+                'core': {
+                    "animation": 0,
+                    "check_callback": true,
+                    "themes": {
+                        "stripes": true
+                    },
+                    'data' : dataTree
+                },
+                plugins: ["wholerow", "contextmenu"],
+                contextmenu: {
+                    items: customMenu,
+                }
+            }).bind("select_node.jstree", function (e, data) {
+                // var href = data.node.a_attr.href;
+                // document.location.href = href;
+            });
+
+            function customMenu(node) {
+            // The default set of all items
+            var items = {
+                detail: { // The "detail" menu item
+                    label: "Detail",
+                    action: function () {
+                        var href = node.a_attr.show;
+                        document.location.href = href;
+                    }
+                },
+                edit: { // The "edit" menu item
+                    label: "Update",
+                    action: function () {
+                        var href = node.a_attr.edit;
+                        document.location.href = href;
+                    }
+                },
+                delete: { // The "delete" menu item
+                    label: "Delete",
+                    action: function () {
+                        var id = node.id;
+                        deleteData(id);
+                    }
+                },
+            };
+
+            if ($(node).hasClass("folder")) {
+                // Delete the "delete" menu item
+                delete items.deleteItem;
+            }
+
+            return items;
+        }
+        });
+    </script>
+
+@endpush
   

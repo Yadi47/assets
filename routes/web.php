@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('layouts.v_template');
 });
 
-// Route::get('/all_assets', 'all_assetsController@index')->name('all_assets.home');
+Route::get('/all_assets', 'all_assetsController@index')->name('all_assets.home');
 
 
 // Category

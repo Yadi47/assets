@@ -59,7 +59,7 @@ class all_assetsController extends Controller
     {
         //
     }
-
+    
     /**
      * Update the specified resource in storage.
      *

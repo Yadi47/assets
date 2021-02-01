@@ -92,22 +92,22 @@ class locationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $request->validate([
             'country' => ['required', "unique:location,country, $id"],
-            
         ]);
           
         $location = Location::findOrFail($id);
-        $location->country = $request->input('country');
-        $location->province = $request->input('province') ?? "N/A";
-        $location->city = $request->input('city') ?? "N/A";
-        $location->address = $request->input('address') ?? "N/A";
-        $location->postal_code = $request->input('postal_code') ?? "N/A";
-        $location->longtitude = $request->input('longtitude') ?? "N/A";
-        $location->latitude = $request->input('latitude') ?? "N/A";
 
+        $location->country = $request->input('country');
+        $location->province = $request->input('province');
+        $location->city = $request->input('city');
+        $location->address = $request->input('address');
+        $location->postal_code = $request->input('postal_code');
+        $location->longtitude = $request->input('longtitude');
+        $location->latitude = $request->input('latitude');
         $location->save();
 
         return redirect('location')->with(['update' => 'Data updated successfully!']);
