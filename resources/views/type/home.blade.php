@@ -3,8 +3,6 @@
 @section('content')
     
 <div class="">
-    <!-- Content Header (Page header) -->
-   
 
     <!-- Main content -->
     <section class="content">
@@ -12,12 +10,35 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title float-right">
-                  <a href="/type/add" class="btn btn-primary ">New Item</a>
-                </h3>
-              </div>
-              <!-- /.card-header -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h3><i data-feather="archive"></i> </h3>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12 mg-b-20">
+                    <div class="card">
+                        <div class="br-section-wrapper" style="padding: 30px 20px">
+                            <div>
+                            <h1><i class="fab fa-trello"></i>
+                            <span class="brand-text font-weight-light" style="font-size:30px;"> <b> Type </b></span>
+                                    </h1> 
+                                </a>
+                            </div>
+                          </div>
+                         </h3>
+                      </div>
+
+               <!-- /.card-header -->
+               <div class="card-body">
+              <button class="btn btn-sm btn-info float-right">
+                 <i class="icon ion ion-ios-plus-outline"></i>
+                   New Data
+                    </button>  
+                      </div> 
+
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>

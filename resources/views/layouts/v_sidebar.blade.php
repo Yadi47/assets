@@ -28,7 +28,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-dolly"></i>
               <p>
                 Assets
                 <i class="right fas fa-angle-left"></i>
@@ -37,31 +37,61 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ url('all_assets') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-globe nav-icon"></i>
                   <p>All Assets</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('type') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fab fa-trello nav-icon"></i>
                   <p>Type</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('location') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                 <i class="fas fa-thumbtack nav-icon"></i>
                   <p>Location</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('category') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-swatchbook nav-icon"></i>
                   <p>Category</p>
                 </a>
               </li>
             </ul>
           </li>
          
+          <!-- Sidebar Menu -->
+       <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-folder-open"></i>
+              <p>
+                Master Data
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('location') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>BOM</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('category') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Material</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>

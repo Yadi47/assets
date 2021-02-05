@@ -18,6 +18,7 @@
           <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description">
         </div>
         
+        </div>
       <!-- /.card-body -->
 
       <div class="card-footer">
