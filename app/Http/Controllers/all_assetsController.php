@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use File;
 use App\Asset;
 use App\Calibration;
 use App\CategoryAsset;
@@ -40,7 +41,7 @@ class all_assetsController extends Controller
                 "id" => $asset->id,
                 "parent" => $parent,
                 "text" => $asset->name . " (" . (isset($asset->assetType->name) ? $asset->assetType->name : '') . " - " . (isset($asset->assetCategory->name) ? $asset->assetCategory->name : '') . ")",
-                "icon" => asset($asset->image ?? 'backend/images/noimage.jpg'),
+                "icon" => asset($asset->image ?? 'images/noimage.jpg'),
                 'a_attr'=> array(
                     'show'=> "assets/".$asset->id,
                     'edit'=> "assets/".$asset->id.'/edit'
@@ -54,10 +55,8 @@ class all_assetsController extends Controller
     }
         public function index()
         {
-            $data[''] = 'Assets';
             $data['asset'] = Asset::all();
     
-            $data[''] = 'Calibration';
             $data['calibration'] = Calibration::all();
             return view('all_assets.home', $data);
         }

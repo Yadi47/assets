@@ -73,7 +73,7 @@
                     <td>{{ $data_location->longtitude }}</td>  
                     <td>{{ $data_location->latitude }}</td>  
                     <td>
-                      <a href="{{url('location/'.$data_location->id.'/edit/') }}">
+                      <a href="{{url('location/'.$data_location->id.'/edit/') }}" class="float-left ">
                         <button class="btn btn-warning btn-sm text-white">
                             <i class="icon icon ion ion-edit"></i> Edit
 
@@ -83,7 +83,7 @@
                         @method('delete')
                         @csrf
 
-                        <button type="submit" class="btn btn-danger btn-sm mt-3 btn-100" onclick="return confirm('Apakah anda yakin ingin menghapus ?')">
+                        <button type="submit" class="btn btn-danger btn-sm  btn-100" onclick="return confirm('Apakah anda yakin ingin menghapus ?')">
                             <i class="far fa-trash-alt"></i> Delete
                         </button>
                        </form>
