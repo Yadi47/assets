@@ -16,7 +16,8 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title float-right">
-                  <a href="/category/add" class="btn btn-primary ">New Item</a>
+                  <a href="/category/add" ><button class="btn btn-sm btn-info float-right">
+                    <i class="icon ion ion-ios-plus-outline"></i>New Item</button></a>
                 </h3>
               </div>
               <!-- /.card-header -->

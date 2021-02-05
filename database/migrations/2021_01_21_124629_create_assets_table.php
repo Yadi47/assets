@@ -27,7 +27,7 @@ class CreateAssetsTable extends Migration
             $table->string('brand');
 
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('asset_part_of');
+            $table->unsignedBigInteger('asset_part_of')->nullable();
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('location_id');
             $table->foreign('category_id')->references('id')->on('category');

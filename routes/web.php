@@ -20,8 +20,8 @@ Route::get('/', function () {
 //Asset
 Route::get('/all_assets', 'all_assetsController@index')->name('all_assets.home');
 Route::get('/all_assets/add', 'all_assetsController@create')->name('all_assets.create');
-Route::post('/all_assets/add', 'all_assetsController@create')->name('all_assets.store');
-Route::get('/all_assets/gettree', 'all_assetsController@getTree')->name('asset.gettree');
+Route::post('/all_assets/add', 'all_assetsController@store')->name('all_assets.store');
+Route::get('/all_assets/gettree', 'all_assetsController@getTree')->name('all_assets.gettree');
 
 // Category
  Route::get('/category', 'categoryController@index')->name('category.home'); 

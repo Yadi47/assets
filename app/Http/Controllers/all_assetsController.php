@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use File;
 use App\Asset;
 use App\Calibration;
 use App\CategoryAsset;
@@ -40,7 +41,7 @@ class all_assetsController extends Controller
                 "id" => $asset->id,
                 "parent" => $parent,
                 "text" => $asset->name . " (" . (isset($asset->assetType->name) ? $asset->assetType->name : '') . " - " . (isset($asset->assetCategory->name) ? $asset->assetCategory->name : '') . ")",
-                "icon" => asset($asset->image ?? 'backend/images/noimage.jpg'),
+                "icon" => asset($asset->image ?? 'images/noimage.jpg'),
                 'a_attr'=> array(
                     'show'=> "assets/".$asset->id,
                     'edit'=> "assets/".$asset->id.'/edit'
@@ -54,10 +55,8 @@ class all_assetsController extends Controller
     }
         public function index()
         {
-            $data[''] = 'Assets';
             $data['asset'] = Asset::all();
     
-            $data[''] = 'Calibration';
             $data['calibration'] = Calibration::all();
             return view('all_assets.home', $data);
         }
@@ -84,7 +83,78 @@ class all_assetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'code' => ['required', 'string', 'unique:assets,code','min:2'],
+            'name' => ['required', 'string','min:3'],
+            'purchase_at' => ['required','date_format:Y-m-d'],
+            'purchase_price' => ['required','regex:/^\d+(\.\d{1,2})?$/','numeric'],
+            'description' => ['nullable'],
+            'status' => ['required','in:1,0'],
+            'model' => ['required','min:3'],
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'brand' => ['required','min:3'],
+            'category_id' => ['required'],
+            'type_id' => ['required'],
+            'location_id' => ['required'],
+            'asset_part_of' => ['nullable'],
+            'calibration_name'=>[],
+            'file_name.*'=>['mimes:pdf,word,docx,ppt,pptx,csv,xlsx,jpeg,png,jpg,gif,svg','max:15000'],
+        ]);
+
+            // $assets = new Assets();
+
+            // $assets->timestamps = date('Y-m-d H:i:s');
+            $data['code'] = $request->get('code');
+            $data['name'] = $request->get('name');
+            $data['purchase_at'] = $request->get('purchase_at');
+            $data['purchase_price'] = $request->get('purchase_price');
+            $data['description'] = $request->get('description');
+            $data['status'] = $request->get('status');
+            $data['model'] = $request->get('model');
+            $data['brand'] = $request->get('brand');
+            $data['category_id'] = $request->get('category_id');
+            $data['type_id'] = $request->get('type_id');
+            $data['location_id'] = $request->get('location_id');
+            $data['asset_part_of'] = $request->get('asset_part_of')?? null;
+
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $name = time() . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('images/assets');
+                $image->move($destinationPath, $name);
+                $data['image'] =$name;
+            }
+            $assets = Asset::create($data);
+
+            $assetCalibrations = [];
+            // $assets->save();
+
+            if($request->hasfile('file_name')){
+                $z = 0;
+                foreach($request->file('file_name')as $file){
+                    $name = $file->getClientOriginalName();
+
+                    $i = 1;
+                    while(file_exists('images/asset-calibrations/'.$name)){
+                        $name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)."($i).".$file->getClientOriginalExtension();
+                        $i++;
+                    }
+                    $destinationPath = public_path('images/asset-calibrations/');
+                    $file->move($destinationPath, $name);
+
+                    $assetCalibrations[] = [
+                        'calibration_name' => $request->get('calibration_name')[$z],
+                        'file_name' => $name,
+                        'asset_id' => $assets->id
+                    ];
+
+                    $z++;
+                }
+                $assets->assetCalibrations()->insert($assetCalibrations);
+            }
+
+        return redirect()->route('all_assets.home')->with(['create' => 'Data saved successfully!']);
+    
     }
 
     /**

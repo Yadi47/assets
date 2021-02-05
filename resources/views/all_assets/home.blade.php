@@ -16,9 +16,7 @@
         <div class="layout-px-spacing">
 
             <div class="page-header">
-                <div class="page-title">
-                    <h3><i data-feather="archive"></i> </h3>
-                </div>
+                    <h3><i data-feather="archive"></i> Asset Management</h3>
             </div>
 
             <div class="row">
@@ -28,8 +26,8 @@
                         <div class="br-section-wrapper" style="padding: 30px 20px">
                             <div>
                                 <span class="tx-bold tx-18"><i class="icon ion ion-ios-speedometer tx-22"></i>
-                                    </span>
-                                 <a href="{{ route('all_assets.create') }}"> 
+                                   </span>
+                                <a href="{{ route('all_assets.create') }}">
                                     <button class="btn btn-sm btn-info float-right">
                                         <i class="icon ion ion-ios-plus-outline"></i>
                                         New Data
@@ -69,11 +67,11 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    @if ($asset->count() < 1)
+                                    {{-- @if ($assets->count() < 1)
                                         <img src="{{ asset('backend/images/no-data.jpg') }}" class="mx-auto d-block" width="50%" alt="">
-                                    @endif
-                                    <div id="treeview">
-                                        
+                                    @endif --}}
+                                    <div id="jstreeview">
+                                        {{dd()}}
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +98,7 @@
         var dataTree = [];
         $.ajax({
             type: 'GET',
-            url: '{{ route('asset.gettree') }}',
+            url: '{{ route('all_assets.gettree') }}',
             dataType: 'json',
             async: false,
             success: function (data) {
@@ -112,7 +110,7 @@
             }
         });
 
-        $('#treeview').jstree({
+        $('#jstreeview').jstree({
             'core': {
                 "animation": 0,
                 "check_callback": true,
@@ -133,6 +131,13 @@
         function customMenu(node) {
             // The default set of all items
             var items = {
+                add_child: { // The "detail" menu item
+                    label: "Add Child",
+                    action: function () {
+                        var href = node.a_attr.add_child;
+                        document.location.href = href;
+                    }
+                },
                 detail: { // The "detail" menu item
                     label: "Detail",
                     action: function () {

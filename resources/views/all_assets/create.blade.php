@@ -247,7 +247,7 @@
                             <div class="form-group">
                                 <button class="btn   btn-success" type="submit"><i class="far fa-save"></i>
                                     Save</button>
-                                <a href="{{ url('assets') }}"><button class="btn btn-danger" type="button">
+                                <a href="{{ route('all_assets.home') }}"><button class="btn btn-danger" type="button">
                                 <i class="far fa-arrow-alt-circle-left"></i> Cancel</button></a>
                             </div>
 
