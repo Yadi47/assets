@@ -10,18 +10,29 @@
         @csrf
       <div class="card-body">
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="unit_code">Unit Code</label>
           <input type="input" class="form-control" id="name" name="name" placeholder="Enter Name">
         </div>
+        <div class="card-body">
+        <div class="form-group">
+          <label for="unit_name">Unit Name</label>
+          <input type="input" class="form-control" id="name" name="name" placeholder="Enter Name">
+        </div>
+        
         <div class="form-group">
           <label for="description">Description</label>
           <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description">
         </div>
+        <div class="card-body">
         <div class="form-group">
-            <label for="image">Image</label>
-            <input type="file" class="form-control" id="image" name="image" placeholder="Enter Image">
-          </div>
-      </div>
+          <label for="remarks">Remarks</label>
+          <input type="input" class="form-control" id="name" name="name" placeholder="Enter Name">
+        </div>
+        <div class="card-body">
+        <div class="form-group">
+          <label for="other">Other</label>
+          <input type="input" class="form-control" id="name" name="name" placeholder="Enter Name">
+        </div>
       <!-- /.card-body -->
 
       <div class="card-footer">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCalibrationsTable extends Migration
+class CreatePlaceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateCalibrationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('calibrations', function (Blueprint $table) {
+        Schema::create('place', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->string('name');
-            $table->string('file_name');
-
-            $table->unsignedBigInteger('asset_id');
-            $table->foreign('asset_id')->references('id')->on('assets');
+            $table->string('place_code');
+            $table->string('place_name');
+            $table->text('descrition')->nullable();
+            $table->text('remarks')->nullable();
+            $table->text('other')->nullable();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateCalibrationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calibrations');
+        Schema::dropIfExists('place');
     }
 }

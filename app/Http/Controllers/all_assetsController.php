@@ -83,6 +83,7 @@ class all_assetsController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'code' => ['required', 'string', 'unique:assets,code','min:2'],
             'name' => ['required', 'string','min:3'],
@@ -121,7 +122,7 @@ class all_assetsController extends Controller
             $image->move($destinationPath, $name);
             $data['image'] =$name;
         }
-        $assets = Assets::create($data);
+        $assets = Asset::create($data);
         $assets->boms()->attach($request->get('bom_id'));
        
         $assetCalibrations = [];

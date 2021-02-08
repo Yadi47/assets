@@ -20,7 +20,7 @@ Route::get('/', function () {
 //Asset
 Route::get('/all_assets', 'all_assetsController@index')->name('all_assets.home');
 Route::get('/all_assets/add', 'all_assetsController@create')->name('all_assets.create');
-Route::post('/all_assets/add', 'all_assetsController@create')->name('all_assets.store');
+Route::post('/all_assets/add', 'all_assetsController@store')->name('all_assets.store');
 Route::get('/all_assets/gettree', 'all_assetsController@getTree')->name('all_assets.gettree');
 
 // Category
@@ -40,9 +40,9 @@ Route::get('/all_assets/gettree', 'all_assetsController@getTree')->name('all_ass
   Route::delete('/location/{id}', 'locationController@destroy')->name('location.destroy');
 
 // Type
- Route::get('/type', 'typeController@index')->name('type.home');
- Route::get('/type/add', 'typeController@create')->name('type.form');
- Route::get('/type/{id}/edit', 'typeController@edit');
+ Route::get('/unit', 'unitController@index')->name('unit.home');
+ Route::get('/unit/add', 'unitController@create')->name('unit.form');
+ Route::get('/unit/{id}/edit', 'unitController@edit');
  Route::post('/type/store', 'typeController@store')->name('type.store');
  Route::put('/type/{id}', 'typeController@update')->name('type.update');
  Route::delete('/type/{id}', 'typeController@destroy')->name('type.destroy');

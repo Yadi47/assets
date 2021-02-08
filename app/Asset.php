@@ -23,9 +23,6 @@ class Asset extends Model
         'asset_part_of',
     ];
 
-<<<<<<< HEAD
-    protected $fillable = ['name','purchase_at','purchase_price','description','status','model','image','brand','category_id','asset_part_of','type_id','location_id'];
-=======
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -54,5 +51,4 @@ class Asset extends Model
     {
         return $this->hasMany(Calibration::class, 'asset_id');
     }
->>>>>>> 99c9e035bd4a63e13665a4a746e37facfce15365
 }

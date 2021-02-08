@@ -42,9 +42,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('type') }}" class="nav-link">
+                <a href="{{ url('unit') }}" class="nav-link">
                   <i class="fab fa-trello nav-icon"></i>
-                  <p>Type</p>
+                  <p>Unit</p>
                 </a>
               </li>
               <li class="nav-item">

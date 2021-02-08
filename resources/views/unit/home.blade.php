@@ -23,7 +23,7 @@
                         <div class="br-section-wrapper" style="padding: 30px 20px">
                             <div>
                             <h1><i class="fab fa-trello"></i>
-                            <span class="brand-text font-weight-light" style="font-size:30px;"> <b> Type </b></span>
+                            <span class="brand-text font-weight-light" style="font-size:30px;"> <b> Unit </b></span>
                                     </h1> 
                                 </a>
                             </div>
@@ -33,10 +33,12 @@
 
                <!-- /.card-header -->
                <div class="card-body">
+               <a href="{{route('unit.form')}}">
               <button class="btn btn-sm btn-info float-right">
                  <i class="icon ion ion-ios-plus-outline"></i>
                    New Data
-                    </button>  
+                    </button> 
+                      </a> 
                       </div> 
 
               <div class="card-body">
@@ -44,10 +46,12 @@
                   <thead>
                   <tr>
                     <th>No</th>
+                    <th>Code Unit</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Image</th>
-                    <th>Action</th>
+                    <th>remarks</th>
+                    <th>other</th>
+                    <th>action</th>
                     
                   </tr>
                   </thead>
@@ -55,24 +59,28 @@
                     @php
                          $no = 1;
                          @endphp
-                      @foreach ($type as $data_type)
+                      @foreach ($unit as $data_unit)
                       
                       <tr>
                       
                     <td>{{ $no++ }}</td>  
-                    <td>{{ $data_type->name }}</td>  
-                    <td>{{ $data_type->description }}</td>  
+                    <td>{{ $data_unit->unit_code }}</td> 
+                    <td>{{ $data_unit->unit_name }}</td>  
+                    <td>{{ $data_unit->description }}</td>  
+                    <td>{{ $data_unit->unit_remarks }}</td>  
+                    <td>{{ $data_unit->unit_other }}</td>  
+
                     <td>
-                      <img width="70"  src="{{ asset('images/type/'.$data_type->image) }}" alt="profile">
+                      <img width="70"  src="{{ asset('images/type/'.$data_unit->image) }}" alt="profile">
                     </td>
                     <td>
-                      <a href="{{url('type/'.$data_type->id.'/edit/') }}">
+                      <a href="{{url('unit/'.$data_unit->id.'/edit/') }}">
                         <button class="btn btn-warning btn-sm text-white">
                             <i class="icon icon ion ion-edit"></i> Edit
 
                         </button>
                        </a>
-                       <form action="{{ route('type.destroy', $data_type->id) }}" method="POST">
+                       <form action="{{ route('type.destroy', $data_unit->id) }}" method="POST">
                         @method('delete')
                         @csrf
 

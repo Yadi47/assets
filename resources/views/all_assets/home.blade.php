@@ -77,7 +77,7 @@
                             @if(!($asset->count() != 0))
                     
                      
-                    <img class="data" src="{{ asset('backend/images/datanull/logo.png') }}" alt="" width="40%"  >
+                    <img class="data" src="{{ asset('images/no_data.jpg') }}" alt="" width="40%"  >
                      @endif
                     <div id="treeview">
                     
@@ -108,7 +108,6 @@
                 console.log(data);
             }
         });
-<<<<<<< HEAD
             $('#treeview').jstree({
                 'core': {
                     "animation": 0,
@@ -117,15 +116,6 @@
                         "stripes": true
                     },
                     'data' : dataTree
-=======
-
-        $('#jstreeview').jstree({
-            'core': {
-                "animation": 0,
-                "check_callback": true,
-                "themes": {
-                    "stripes": true
->>>>>>> 99c9e035bd4a63e13665a4a746e37facfce15365
                 },
                 plugins: ["wholerow", "contextmenu"],
                 contextmenu: {
@@ -139,11 +129,7 @@
             function customMenu(node) {
             // The default set of all items
             var items = {
-<<<<<<< HEAD
                 add: { // The "detail" menu item
-=======
-                add_child: { // The "detail" menu item
->>>>>>> 99c9e035bd4a63e13665a4a746e37facfce15365
                     label: "Add Child",
                     action: function () {
                         var href = node.a_attr.add_child;
